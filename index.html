@@ -4,20 +4,43 @@
 <head>
     <meta charset="utf-8">
     <title>Bartender</title>
-    <link rel="stylesheet" href="styles/normalize.css" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
-
-
-
+    <div class="bodyContainer">
+        <div class="questionContainer">
+            <div class="questionBox">
+                <h3 class="currentQuestion">Can I make you a drink?</h3>
+                <button type="button" id="startBtn">Begin</button>
+                <div class="inputBtnWrap">
+                    <button type="button" id="yesBtn">Yes</button>
+                    <button type="button" id="noBtn">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="prefContainer">
+            <div class="preferList">
+                <h4>Your Drink Preferences:</h4>
+                <ul></ul>
+            </div>
+        </div>
+        <div class="drinkContainer">
+            <div class="drinkIngreds">
+                <h4>Your Drink's Ingredients:</h4>
+                <ul></ul>
+            </div>
+        </div>
+        <button type="button" id="moreBtn">Make Another?</button>
+    </div>
 
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
     <script src="js/actions.js"></script>
+
 </body>
 
 </html>
