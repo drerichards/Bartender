@@ -1,11 +1,3 @@
-var startBtn = $('#startBtn');
-var currQuestion = $('.currentQuestion');
-var prefWrap = $('.prefContainer');
-var drinkWrap = $('.drinkContainer');
-var prefList = $('.preferList ul');
-var drinkList = $('.drinkIngreds ul');
-var moreBtn = $('#moreBtn');
-
 // Bartender Prototype //
 var Bartender = function(questions) {
     this.questions = questions;
@@ -37,8 +29,10 @@ $(function() {
 
 // Question Section //
 function startQuestions() {
+    var startBtn = $('#startBtn');
     startBtn.click(function() {
-        startBtn.addClass('hideItem');
+        var prefWrap = $('.prefContainer');
+        startBtn.css('display', 'none');
         $('.inputBtnWrap').css('display', 'inline-block');
         prefWrap.css('display', 'block');
         createDrink();
@@ -47,13 +41,17 @@ function startQuestions() {
 
 // Evaluates Yes or No Answers and outputs a drink's ingredients
 function createDrink() {
+    var currQuestion = $('.currentQuestion');
+    var prefList = $('.preferList ul');
+    var drinkList = $('.drinkIngreds ul');
+    var moreBtn = $('#moreBtn');
+
     var drinkQuestions = new Bartender(questionArray);
     var ingredItems = new Pantry(ingredientArray);
     var counter = 0;
-    var changeQuestion = currQuestion.html(drinkQuestions.questions[counter]);
-    changeQuestion; // Load first question
+    currQuestion.html(drinkQuestions.questions[counter]); // Load first question
 
-    $('input').on('click', function() {
+    $('button').on('click', function() {
         if (this.id === 'yesBtn' && counter < questionArray.length) {
             var rndmIdx = Math.floor((Math.random() * 3) + 1);
             prefList.append('<li>' + ingredItems.ingredients[counter][0] + '</li>'); // Add user's drink preference to UI list
@@ -62,16 +60,17 @@ function createDrink() {
             prefList.append('<li>Not ' + ingredItems.ingredients[counter][0] + '</li>'); // Add user's drink preference to UI list
         }
         counter++;
-        changeQuestion;
+        currQuestion.html(drinkQuestions.questions[counter]);
         if (counter == 5) {
+            var drinkWrap = $('.drinkContainer');
             drinkWrap.css('display', 'block'); // Shows drink container and more button upon last question
             moreBtn.css('display', 'block');
-            if ($('.drinkIngreds ul li').length == 0){
+            if ($('.drinkIngreds ul li').length == 0) {
                 drinkList.append('<li>I\'ll just get you a water</li>');
             }
             moreBtn.on('click', function() {
                 counter = 0; // Reset variables
-                changeQuestion;
+                currQuestion.html(drinkQuestions.questions[counter]);
                 anotherDrink();
                 drinkWrap.css('display', 'none');
                 moreBtn.css('display', 'none');
